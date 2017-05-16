@@ -3,15 +3,22 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
-# Use Postgres for production environment (As Heroku only supports this)
+
 group :production do
+	# Use Postgres for production environment (As Heroku only supports this)
   gem 'pg'
   gem 'rails_12factor'
 end
 
-# Use sqlite3 for development environment
+
 group :development do
+	# Use sqlite3 for development environment
   gem 'sqlite3'
+end
+
+group :development, :test do
+	# Use RSpec for testing
+  gem 'rspec-rails', '~> 3.0'
 end
 
 # Use SCSS for stylesheets
