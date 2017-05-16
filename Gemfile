@@ -21,8 +21,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
 
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+# Use Bootstrap for css framework
+gem 'bootstrap-sass'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
