@@ -19,6 +19,7 @@ end
 group :development, :test do
 	# Use RSpec for testing
   gem 'rspec-rails', '~> 3.0'
+  gem 'shoulda'
 end
 
 gem 'faker'
