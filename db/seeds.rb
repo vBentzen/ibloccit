@@ -11,7 +11,7 @@ topics = Topic.all
 50.times do
 	Post.create!(
 		topic: topics.sample,
-		title: Faker::StarWars.character,
+		title: Faker::Name.name,
 		body: Faker::Lorem.paragraph
 	)
 end

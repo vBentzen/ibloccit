@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-  let(:my_topic) { Topic.create!(name: Faker::StarWars.character, description: Faker::Lorem.paragraph) }
-  let(:my_post) { my_topic.posts.create!(title: Faker::StarWars.character, body: Faker::Lorem.paragraph) }
+  let(:my_topic) { Topic.create!(name: Faker::Name.name, description: Faker::Lorem.paragraph) }
+  let(:my_post) { my_topic.posts.create!(title: Faker::Name.name, body: Faker::Lorem.paragraph) }
 
   describe "GET new" do
     it "return http success" do
@@ -23,16 +23,16 @@ RSpec.describe PostsController, type: :controller do
 
   describe "POST create" do
     it "increases the number of Post by 1" do
-      expect{post :create, topic_id: my_topic.id, post: {title: Faker::StarWars.character, body: Faker::Lorem.paragraph}}.to change(Post,:count).by(1)
+      expect{post :create, topic_id: my_topic.id, post: {title: Faker::Name.name, body: Faker::Lorem.paragraph}}.to change(Post,:count).by(1)
     end
 
     it "assigns the new post to @post" do
-      post :create, topic_id: my_topic.id, post: {title: Faker::StarWars.character, body: Faker::Lorem.paragraph}
+      post :create, topic_id: my_topic.id, post: {title: Faker::Name.name, body: Faker::Lorem.paragraph}
       expect(assigns(:post)).to eq Post.last
     end
 
     it "redirects to the new post" do
-      post :create, topic_id: my_topic.id, post: {title: Faker::StarWars.character, body: Faker::Lorem.paragraph}
+      post :create, topic_id: my_topic.id, post: {title: Faker::Name.name, body: Faker::Lorem.paragraph}
       expect(response).to redirect_to [my_topic, Post.last]
     end
   end
@@ -76,7 +76,7 @@ RSpec.describe PostsController, type: :controller do
 
   describe "PUT update" do
     it "updates post with expected attributes" do
-      new_title = Faker::StarWars.character
+      new_title = Faker::Name.name
       new_body = Faker::Lorem.paragraph
  
       put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
@@ -88,7 +88,7 @@ RSpec.describe PostsController, type: :controller do
     end
  
     it "redirects to the updated post" do
-      new_title = Faker::StarWars.character
+      new_title = Faker::Name.name
       new_body = Faker::Lorem.paragraph
  
       put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
