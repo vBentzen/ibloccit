@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
 	let(:name) { Faker::StarWars.character }
 	let(:description) { Faker::Lorem.paragraph }
-	let(:title) { Faker::StarWars.character }
+	let(:title) { Faker::Name.name }
 	let(:body) { Faker::Lorem.paragraph }
 	let(:topic) { Topic.create!(name: name, description: description) }
 	let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
@@ -51,6 +51,25 @@ RSpec.describe Post, type: :model do
 		describe "#points" do
 			it "returns the sum of all up and down votes" do
 				expect( post.points ).to eq(@up_votes - @down_votes)
+			end
+		end
+
+		describe "#update_rank" do
+			it "calculates the correct rank" do
+				post.update_rank
+				expect(post.rank).to eq(post.points + (post.created_at - Time.new(1970,1,1)) / 1.day.seconds)
+			end
+
+			it "updates the rank when an up vote is created" do
+				old_rank = post.rank
+				post.votes.create!(value: 1)
+				expect(post.rank).to eq (old_rank + 1)
+			end
+
+			it "updates the rank when a down vote is created" do
+				old_rank = post.rank
+				post.votes.create!(value: -1)
+				expect(post.rank).to eq (old_rank - 1)
 			end
 		end
 	end
