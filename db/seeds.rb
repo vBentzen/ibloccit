@@ -11,7 +11,7 @@ users = User.all
 # Create Topics
 15.times do
 	Topic.create!(
-		name: Faker::StarWars.character,
+		name: Faker::Superhero.name,
 		description: Faker::Lorem.paragraph
 	)
 end
@@ -22,7 +22,7 @@ topics = Topic.all
 	Post.create!(
 		user: users.sample,
 		topic: topics.sample,
-		title: Faker::StarWars.character,
+		title: Faker::Internet.user_name(5),
 		body: Faker::Lorem.paragraph
 	)
 end
@@ -36,11 +36,20 @@ posts = Post.all
 	)
 end
 
- user = User.first
- user.update_attributes!(
-   email: 'askebentzen@gmail.com',
-   password: 'helloworld'
- )
+# Create an admin user
+admin = User.create!(
+  name:     'Admin User',
+  email:    'admin@example.com',
+  password: 'helloworld',
+  role:     'admin'
+)
+ 
+# Create a member
+member = User.create!(
+  name:     'Member User',
+  email:    'member@example.com',
+  password: 'helloworld'
+)
 
 puts "Seed finished"
 puts "#{User.count} users created"
