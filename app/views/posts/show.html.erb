@@ -26,14 +26,19 @@
 		</div>
 	<% end %>
 	<div class="col-md-4">
-			<h3>
-				<%= pluralize(@post.points, 'point') %>
-				<div>
-					<small>
+		<h3>
+			<%= pluralize(@post.points, 'point') %>
+			<div>
+				<small>
 					<%= pluralize(@post.up_votes, 'up vote') %>
 					<%= pluralize(@post.down_votes, 'down vote') %>
-					</small>
-				</div>
-			</h3>
+				</small>
+			</div>
+		</h3>
+		<div>
+			<% if current_user %>
+				<%= render 'favorites/favorite', locals: { post: @post } %>
+			<% end %>
 		</div>	
+	</div>	
 </div>

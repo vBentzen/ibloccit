@@ -22,7 +22,10 @@ group :development, :test do
   gem 'shoulda'
 end
 
+# Use Faker to use as data for seed/test
 gem 'faker'
+# Use Figaro to store sensitive information
+gem 'figaro', '1.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Bootstrap for css framework
